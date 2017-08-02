@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 2.8.3)
 project(oculus_rviz_plugins)
 
 # Qt
-find_package(Qt4 COMPONENTS QtCore QtGui REQUIRED)
-include(${QT_USE_FILE})
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+set(QT_LIBRARIES Qt5::Widgets)
+set(QTVERSION ${Qt5Widgets_VERSION})
 add_definitions(-DQT_NO_KEYWORDS -fPIC)
 
 # Catkin
@@ -44,7 +45,7 @@ include_directories(include
 )
 
 # run Qt moc generator
-qt4_wrap_cpp(MOC_FILES
+qt5_wrap_cpp(MOC_FILES
   include/oculus_rviz_plugins/oculus_display.h
   include/oculus_rviz_plugins/fixed_view_controller.h
 )
